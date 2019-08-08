@@ -1,53 +1,52 @@
-import React from "react"
-import styled from "styled-components"
-import Img from "./img"
+import React from 'react';
+import styled from 'styled-components';
+import Img from './img';
 
-const KeyWrap = styled("div")`
+const KeyWrap = styled('div')`
   display: grid;
-  grid: 1fr / repeat(16, 1fr);
-`
+  grid: 1fr / repeat(15, 1fr);
+  justify-items: center;
+`;
 
-const Item = styled("div")`
+const Item = styled('div')`
   display: grid;
-  grid: 1fr 50px / 50px;
-  color: red;
-`
+  grid: 1fr 30px / 30px;
+`;
 
 const animalMap = {
-  Human: "chicken",
-  Cat: "cat-butt",
-  "Small dog": "pug",
-  "Medium dog": "corgi",
-  "Large dog": "german-shepherd",
-  Hamster: "cute-hamster",
-  Chicken: "chicken",
-  Monkey: "chicken",
-  Horse: "horse",
-  Cow: "cow",
-  Pig: "pig",
-  Rabbit: "rabbit",
-  Elephant: "elephant",
-  Giraffe: "giraffe",
-  "Large whale": "whale",
-}
+  Human: 'human',
+  Cat: 'cat-butt',
+  'Small dog': 'pug',
+  'Medium dog': 'corgi',
+  'Large dog': 'german-shepherd',
+  Hamster: 'cute-hamster',
+  Chicken: 'chicken',
+  Monkey: 'monkey',
+  Horse: 'horse',
+  Cow: 'cow',
+  Pig: 'pig',
+  Rabbit: 'rabbit',
+  Elephant: 'elephant',
+  Giraffe: 'giraffe',
+  'Large whale': 'whale'
+};
 
 const Key = ({ animals = [] }) => {
-  console.log(JSON.stringify(animals))
   return (
     <KeyWrap>
-      {animals.map(name => (
-        <Item>
+      {animals.map((name, idx) => (
+        <Item key={idx}>
           <span>{name}</span>
           <span>
-            {/* <Img filename={`icons8-${animalMap[name]}-50.png`} alt={name} /> */}
+            <Img filename={`icons8-${animalMap[name]}-50.png`} alt={name} />
           </span>
         </Item>
       ))}
     </KeyWrap>
-  )
-}
+  );
+};
 
-export default Key
+export default Key;
 
 // export const fluidImage = graphql`
 //   fragment fluidImage on File {
