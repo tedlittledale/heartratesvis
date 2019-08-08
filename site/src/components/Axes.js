@@ -8,25 +8,65 @@ const AxesWrap = styled('div')`
   justify-items: center;
   position: relative;
   height: 500px;
+
+  line {
+    stroke: #d8d8d8;
+  }
 `;
 
-const XAxis = styled.div`
+const YAxis = styled.svg`
   display: grid;
   position: absolute;
-  width: 50px;
+  width: 100%;
   height: 100%;
   left: 0;
   top: 0;
-  display: grid;
-  grid: repeat(10, 1fr) / 1fr;
+  /* display: grid;
+  grid: repeat(10, 1fr) / 1fr; */
+  text {
+    fill: #8c9296;
+    font-size: 10px;
+    user-select: none;
+  }
 `;
 
-const Axes = ({ yTicks, xTicks }) => {
+const XAxis = styled.svg`
+  display: grid;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  /* display: grid;
+  grid: repeat(10, 1fr) / 1fr; */
+  text {
+    fill: #8c9296;
+    font-size: 10px;
+    user-select: none;
+  }
+`;
+
+const Axes = ({ yTicks, xTicks, yScale }) => {
   return (
     <AxesWrap>
+      <YAxis>
+        {yTicks.map(({ label, y }, i) => (
+          <g key={i}>
+            <line x1={0} x2={20} y1={y} y2={y} />
+            <text x={0} y={y + 11}>
+              {label}
+            </text>
+          </g>
+        ))}
+        }
+      </YAxis>
       <XAxis>
-        {yTicks.map(val => (
-          <span>{val}</span>
+        {xTicks.map(({ label, x }, i) => (
+          <g key={i}>
+            <text x={x} textAnchor="middle" y={500 - 20 + 15}>
+              {label}
+            </text>
+          </g>
         ))}
       </XAxis>
     </AxesWrap>
@@ -34,27 +74,3 @@ const Axes = ({ yTicks, xTicks }) => {
 };
 
 export default Axes;
-
-// export const fluidImage = graphql`
-//   fragment fluidImage on File {
-//     childImageSharp {
-//       fluid(maxWidth: 50) {
-//         ...GatsbyImageSharpFluid
-//       }
-//     }
-//   }
-// `
-
-// export const pageQuery = graphql`
-//   query {
-//     imageOne: file(relativePath: { eq: "one.jpg" }) {
-//       ...fluidImage
-//     }
-//     imageTwo: file(relativePath: { eq: "two.jpg" }) {
-//       ...fluidImage
-//     }
-//     imageThree: file(relativePath: { eq: "three.jpg" }) {
-//       ...fluidImage
-//     }
-//   }
-// `

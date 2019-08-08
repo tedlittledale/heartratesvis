@@ -6,10 +6,12 @@ import { injectPick, withPaths } from '../utils/store';
 
 import Key from './Key';
 import Axes from './Axes';
+import Points from './Points';
 
 const ChartWrap = styled('div')`
   width: 100%;
-  height: 500px;
+  height: 600px;
+  position: relative;
 `;
 
 const HeartrateChart = ({ data = [], chart }) => {
@@ -19,17 +21,20 @@ const HeartrateChart = ({ data = [], chart }) => {
     chart.setUpScales();
   }, []);
   return (
-    <ChartWrap>
+    <>
       <Key animals={data.map(({ node: { Creature } }) => Creature)}></Key>
-      {chart.animals.length && (
-        <>
-          <Axes
-            xTicks={chart.heartAxis()}
-            yTicks={chart.longevityAxis()}
-          ></Axes>
-        </>
-      )}
-    </ChartWrap>
+      <ChartWrap>
+        {chart.animals.length && (
+          <>
+            <Axes
+              yTicks={chart.heartAxis()}
+              xTicks={chart.longevityAxis()}
+            ></Axes>
+            <Points points={chart.longevityPoints()}></Points>
+          </>
+        )}
+      </ChartWrap>
+    </>
   );
 };
 

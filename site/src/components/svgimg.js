@@ -2,7 +2,7 @@ import React from 'React';
 import Img from 'gatsby-image';
 import { StaticQuery, graphql } from 'gatsby';
 
-const Image = ({ filename, alt }) => (
+const Image = ({ filename, x, y, height, width }) => (
   <StaticQuery
     query={graphql`
       query {
@@ -28,9 +28,16 @@ const Image = ({ filename, alt }) => (
       if (!image) {
         return null;
       }
-      console.log({ image });
+
       const imageSizes = image.node.childImageSharp.sizes;
-      return <Img alt={alt} sizes={imageSizes} />;
+      const {
+        node: {
+          childImageSharp: {
+            sizes: { src }
+          }
+        }
+      } = image;
+      return <image href={src} x={x} y={y} height={height} width={width} />;
     }}
   />
 );
