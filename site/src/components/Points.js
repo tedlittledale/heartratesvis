@@ -20,6 +20,17 @@ const pulse = keyframes`
       opacity: 0;
   }
 `;
+const pulse2 = keyframes`
+ 0% {
+    box-shadow: 0 0 0 0 rgba(255,99,71 ,0.9 ));
+  }
+  70% {
+      box-shadow: 0 0 0 20px rgba(255,99,71 ,0.7 );
+  }
+  100% {
+      box-shadow: 0 0 0 0 rgba(255,99,71 ,0.9);
+  }
+`;
 
 const PointsWrap = styled('svg')`
   display: grid;
@@ -35,10 +46,24 @@ const PointsWrap = styled('svg')`
   }
 `;
 
+const Blinker = styled.div`
+  position: absolute;
+  top: ${prop('top')}px;
+  left: ${prop('left')}px;
+  width: 8px;
+  height: 8px;
+  border-radius: 4px;
+  animation: ${pulse2} ${withProp(['duration'], duration => `${duration}ms`)}
+    linear infinite;
+`;
+
 const ImageWrap = styled('g')`
   image {
-    animation: ${pulse} ${withProp(['duration'], duration => `${duration}ms`)}
-      linear infinite;
+    /* animation: ${pulse} ${withProp(
+  ['duration'],
+  duration => `${duration}ms`
+)}
+      linear infinite; */
   }
 `;
 
@@ -62,38 +87,43 @@ const animalMap = {
 
 const Points = ({ points = [] }) => {
   return (
-    <PointsWrap>
-      <defs>
-        <filter id="shadow">
-          <feDropShadow dx="0.2" dy="0.4" stdDeviation="0.2" />
-        </filter>
-      </defs>
+    <>
       {points.map(({ x, y, label, pulse }, i) => (
-        <g>
-          {/* <circle fill={'red'} cx={x} cy={y} r="10" key={i} />
+        <Blinker top={y - 4} duration={pulse} left={x - 4}></Blinker>
+      ))}
+      <PointsWrap>
+        <defs>
+          <filter id="shadow">
+            <feDropShadow dx="0.2" dy="0.4" stdDeviation="0.2" />
+          </filter>
+        </defs>
+        {points.map(({ x, y, label, pulse }, i) => (
+          <g>
+            {/* <circle fill={'red'} cx={x} cy={y} r="10" key={i} />
           <text x={x} y={y + 11}>
             {label}
           </text>
           <image xlink:href="firefox.jpg" x="0" y="0" height="50px" width="50px"/> */}
-          {/* <rect x={x} y={y} height={30} width={30} /> */}
-          <ImageWrap duration={pulse}>
-            <Img
-              filename={`icons8-${animalMap[label]}-50.png`}
-              x={x}
-              y={y}
-              height={30}
-              width={30}
-              alt={label}
-            />
-          </ImageWrap>
+            {/* <rect x={x} y={y} height={30} width={30} /> */}
+            <ImageWrap duration={pulse}>
+              <Img
+                filename={`icons8-${animalMap[label]}-50.png`}
+                x={x - 15}
+                y={y - 15}
+                height={30}
+                width={30}
+                alt={label}
+              />
+            </ImageWrap>
 
-          {/* <path
+            {/* <path
             d={`M${x},${y} ${x + 30},${y + 30}`}
             style={{ filter: 'url(#shadow);' }}
           /> */}
-        </g>
-      ))}
-    </PointsWrap>
+          </g>
+        ))}
+      </PointsWrap>
+    </>
   );
 };
 

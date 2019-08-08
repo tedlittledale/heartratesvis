@@ -34,6 +34,14 @@ const HeartrateChart = ({ data = [], chart }) => {
           </>
         )}
       </ChartWrap>
+      <ChartWrap>
+        {chart.animals.length && (
+          <>
+            <Axes yTicks={chart.heartAxis()} xTicks={chart.weightAxis()}></Axes>
+            <Points points={chart.weightPoints()}></Points>
+          </>
+        )}
+      </ChartWrap>
     </>
   );
 };

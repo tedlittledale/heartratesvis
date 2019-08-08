@@ -8,7 +8,7 @@
 import React from 'react';
 import { Provider } from 'mobx-react';
 import { types, onSnapshot } from 'mobx-state-tree';
-import { scaleLinear } from 'd3-scale';
+import { scaleLinear, scaleLog } from 'd3-scale';
 
 const AnimalModel = types.model('AnimalModel', {
   Creature: '',
@@ -88,10 +88,11 @@ const ChartModel = types
         .range([marginTop, chartHeight - marginY - marginTop]);
       self.longevityScale = scaleLinear()
         .domain([minLongevity, maxLongevity])
-        .range([marginY, 1000]);
-      self.weightScale = scaleLinear()
+        .range([marginY, 960 - marginX]);
+      self.weightScale = scaleLog()
+        .base(2)
         .domain([minWeight, maxWeight])
-        .range([marginY, 1000]);
+        .range([marginY, 960 - marginX]);
     }
   }))
   .views(self => ({
@@ -108,7 +109,7 @@ const ChartModel = types
       }));
     },
     weightAxis() {
-      return self.weightScale.ticks(10).map(val => ({
+      return self.weightScale.ticks(10, ',.1s').map(val => ({
         label: val,
         x: self.weightScale(val)
       }));
@@ -138,8 +139,8 @@ const ChartModel = types
           Resting_Heart_Rate__BPM_
         }) => ({
           y: self.heartScale(Resting_Heart_Rate__BPM_),
-          x: self.longevityScale(Mass__grams_),
-          pulse: Math.round(Resting_Heart_Rate__BPM_ * (500 / 120)),
+          x: self.weightScale(Mass__grams_),
+          pulse: Math.round(1000 / (Resting_Heart_Rate__BPM_ / 60)),
           label: Creature
         })
       );
