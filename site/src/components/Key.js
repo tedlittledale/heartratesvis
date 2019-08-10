@@ -4,13 +4,47 @@ import Img from './img';
 
 const KeyWrap = styled('div')`
   display: grid;
-  grid: 1fr / repeat(15, 1fr);
   justify-items: center;
+  align-items: center;
+  h2 {
+    background-image: linear-gradient(
+      to bottom right,
+      hsl(205, 87%, 29%),
+      hsl(205, 76%, 39%)
+    );
+    margin: 0 0 10px;
+    padding: 20px 40px;
+    border-radius: 5px 5px 0 0;
+    color: #fff;
+    font-weight: normal;
+    letter-spacing: 0.8px;
+  }
+  > div {
+    width: 80%;
+    min-width: 300px;
+    max-width: 960px;
+    border-radius: 5px;
+    box-shadow: 0 5px 15px hsla(0, 0%, 0%, 0.2);
+    box-sizing: border-box;
+    background: white;
+  }
+`;
+
+const Items = styled('div')`
+  display: grid;
+  grid: 1fr 1fr 1fr / repeat(5, 1fr);
+  grid-gap: 15px 0;
+  padding-bottom: 20px;
 `;
 
 const Item = styled('div')`
   display: grid;
-  grid: 1fr 30px / 30px;
+  grid: 1fr 30px / 1fr;
+  justify-items: center;
+  .gatsby-image-wrapper {
+    width: 30px;
+    height: 30px;
+  }
 `;
 
 const animalMap = {
@@ -34,14 +68,19 @@ const animalMap = {
 const Key = ({ animals = [] }) => {
   return (
     <KeyWrap>
-      {animals.map((name, idx) => (
-        <Item key={idx}>
-          <span>{name}</span>
-          <span>
-            <Img filename={`icons8-${animalMap[name]}-50.png`} alt={name} />
-          </span>
-        </Item>
-      ))}
+      <div>
+        <h2>Key</h2>
+        <Items>
+          {animals.map((name, idx) => (
+            <Item key={idx}>
+              <span>{name}</span>
+              <span>
+                <Img filename={`icons8-${animalMap[name]}-50.png`} alt={name} />
+              </span>
+            </Item>
+          ))}
+        </Items>
+      </div>
     </KeyWrap>
   );
 };

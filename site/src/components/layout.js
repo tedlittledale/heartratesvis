@@ -12,11 +12,13 @@ import { createGlobalStyle } from 'styled-components';
 
 import Header from './header';
 
-export const GlobalStyle = createGlobalStyle`
+const GlobalStyle = createGlobalStyle`
   body {
     padding: 0;
     margin: 0;
     font-family:arial;
+    color:hsl(40, 13%, 23%);
+    background:hsl(40, 23%, 97%);
   }
   a {
     text-decoration: none;
@@ -42,14 +44,7 @@ const Layout = ({ children }) => {
     <>
       <GlobalStyle />
 
-      <div
-        style={{
-          margin: `0 auto`,
-          maxWidth: 960,
-          padding: `0px 1.0875rem 1.45rem`,
-          paddingTop: 0
-        }}
-      >
+      <div>
         <main>{children}</main>
       </div>
     </>

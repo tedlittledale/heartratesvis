@@ -22,13 +22,27 @@ const pulse = keyframes`
 `;
 const pulse2 = keyframes`
  0% {
-    box-shadow: 0 0 0 0 rgba(255,99,71 ,0.9 ));
+    box-shadow: 0 0 0 0 hsla(9, 100%, 64%, 0.9);
   }
   70% {
-      box-shadow: 0 0 0 20px rgba(255,99,71 ,0.7 );
+      box-shadow: 0 0 0 20px hsla(9, 100%, 64%, 0.7);
+  }
+  100% {
+      box-shadow: 0 0 0 0 hsla(9, 100%, 64%, 0.9);
+  }
+`;
+const pulse3 = keyframes`
+ 0% {
+    box-shadow: 0 0 0 0 rgba(255,99,71 ,0.9 ));
+    transform: scale(0.1)
+  }
+  70% {
+      box-shadow: 0 0 0 2px rgba(255,99,71 ,0.7 );
+    transform: scale(0.7) ;
   }
   100% {
       box-shadow: 0 0 0 0 rgba(255,99,71 ,0.9);
+    transform: scale(0.1)
   }
 `;
 
@@ -55,6 +69,49 @@ const Blinker = styled.div`
   border-radius: 4px;
   animation: ${pulse2} ${withProp(['duration'], duration => `${duration}ms`)}
     linear infinite;
+    /* transform: scale(0.1) translateX(-25%) translateY(-25%);
+  transform-origin:50% 50%;
+  animation: ${pulse3} ${withProp(['duration'], duration => `${duration}ms`)}
+    linear infinite; */
+   
+  /* &:before,
+  &:after {
+    position: absolute;
+    content: '';
+    left: 2px;
+    top: -25px;
+    width: 50px;
+    height: 80px;
+    background:hsla(9, 100%, 74%, 1);
+    -moz-border-radius: 50px 50px 0 0;
+    border-radius: 50px 50px 0 0;
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    -webkit-transform-origin: 0 100%;
+    -moz-transform-origin: 0 100%;
+    -ms-transform-origin: 0 100%;
+    -o-transform-origin: 0 100%;
+    transform-origin: 0 100%;
+
+    
+    linear infinite;
+  }
+  &:after {
+    left: -48px;
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
+    -webkit-transform-origin: 100% 100%;
+    -moz-transform-origin: 100% 100%;
+    -ms-transform-origin: 100% 100%;
+    -o-transform-origin: 100% 100%;
+    transform-origin: 100% 100%;
+  } */
 `;
 
 const ImageWrap = styled('g')`

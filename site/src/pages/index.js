@@ -1,8 +1,51 @@
 import React from 'react';
 import { Link, useStaticQuery } from 'gatsby';
+import styled from 'styled-components';
 
 import Layout from '../components/layout';
 import HeartrateChart from '../components/heartrateChart';
+
+const Header = styled('header')`
+  background-image: linear-gradient(
+    to bottom right,
+    hsl(205, 76%, 39%),
+    hsl(205, 74%, 65%)
+  );
+  text-align: center;
+  padding: 30px 0 80px;
+  color: #fff;
+  overflow: visible;
+  position: relative;
+  h1 {
+    font-weight: normal;
+  }
+  margin-bottom: 100px;
+`;
+
+const Info = styled('div')`
+  min-height: 100px;
+
+  position: absolute;
+  width: 100%;
+  left: 0;
+  bottom: -50px;
+  > div {
+    width: 80%;
+    min-width: 300px;
+    max-width: 960px;
+    background: #fff;
+    border: 2px solid hsl(43, 13%, 90%);
+    border-radius: 5px;
+    color: hsl(40, 13%, 23%);
+    margin: 0 auto;
+    display: grid;
+    align-items: center;
+    padding: 0 20px;
+    box-sizing: border-box;
+    line-height: 1.7;
+    font-size: 18px;
+  }
+`;
 
 const IndexPage = () => {
   const {
@@ -24,7 +67,24 @@ const IndexPage = () => {
   console.log({ animalData });
   return (
     <Layout>
-      <h1>Heartrates</h1>
+      <Header>
+        <h1>Heart rates, masses, and longevity of select mammals</h1>
+        <Info>
+          <div>
+            <p>
+              A submission for the Reddit r/dataisbeautiful{' '}
+              <a
+                href="https://www.reddit.com/r/dataisbeautiful/comments/cmrz6j/battle_dataviz_battle_for_the_month_of_august/"
+                _target="blank"
+              >
+                DataViz Battle for the month of August 2019
+              </a>
+              : <br />
+              Visualize heart rates, masses, and longevity of select mammals
+            </p>
+          </div>
+        </Info>
+      </Header>
       <HeartrateChart data={animalData}></HeartrateChart>
       {/* <div>
         Icons made by{' '}

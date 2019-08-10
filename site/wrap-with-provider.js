@@ -39,6 +39,7 @@ const ChartModel = types
         minLongevity = 0,
         maxWeight = 0,
         minWeight = 0;
+      const paddingX = 30;
       const marginX = 30;
       const marginY = 30;
       const marginTop = 30;
@@ -85,14 +86,20 @@ const ChartModel = types
       });
       self.heartScale = scaleLinear()
         .domain([maxHeartrate, minHeartrate])
+        .nice(5)
         .range([marginTop, chartHeight - marginY - marginTop]);
       self.longevityScale = scaleLinear()
         .domain([minLongevity, maxLongevity])
-        .range([marginY, 960 - marginX]);
+        .nice(5)
+        .range([paddingX + marginY, 960 - marginX - paddingX]);
+      self.longevityScaleY = scaleLinear()
+        .domain([maxLongevity, minLongevity])
+        .nice(5)
+        .range([marginTop, chartHeight - marginY - marginTop]);
       self.weightScale = scaleLog()
         .base(2)
         .domain([minWeight, maxWeight])
-        .range([marginY, 960 - marginX]);
+        .range([paddingX + marginY, 960 - marginX - paddingX]);
     }
   }))
   .views(self => ({
@@ -102,6 +109,12 @@ const ChartModel = types
         y: self.heartScale(val)
       }));
     },
+    longevityYAxis() {
+      return self.longevityScaleY.ticks(10).map(val => ({
+        label: val,
+        y: self.longevityScaleY(val)
+      }));
+    },
     longevityAxis() {
       return self.longevityScale.ticks(10).map(val => ({
         label: val,
@@ -109,10 +122,12 @@ const ChartModel = types
       }));
     },
     weightAxis() {
-      return self.weightScale.ticks(10, ',.1s').map(val => ({
-        label: val,
-        x: self.weightScale(val)
-      }));
+      return [10, 100, 1000, 10000, 100000, 1000000, 10000000, 100000000].map(
+        val => ({
+          label: val / 1000,
+          x: self.weightScale(val)
+        })
+      );
     },
     longevityPoints() {
       return self.animals.map(
@@ -125,6 +140,22 @@ const ChartModel = types
         }) => ({
           y: self.heartScale(Resting_Heart_Rate__BPM_),
           x: self.longevityScale(Longevity__Years_),
+          pulse: Math.round(1000 / (Resting_Heart_Rate__BPM_ / 60)),
+          label: Creature
+        })
+      );
+    },
+    longevityWeightPoints() {
+      return self.animals.map(
+        ({
+          Creature,
+          Longevity__Years_,
+          Mass__grams_,
+          Resting_Heart_Rate__BPM_,
+          ...rest
+        }) => ({
+          y: self.longevityScaleY(Longevity__Years_),
+          x: self.weightScale(Mass__grams_),
           pulse: Math.round(1000 / (Resting_Heart_Rate__BPM_ / 60)),
           label: Creature
         })

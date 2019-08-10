@@ -7,7 +7,7 @@ const AxesWrap = styled('div')`
   grid: 1fr / 1fr;
   justify-items: center;
   position: relative;
-  height: 500px;
+  height: 600px;
 
   line {
     stroke: #d8d8d8;
@@ -25,8 +25,11 @@ const YAxis = styled.svg`
   grid: repeat(10, 1fr) / 1fr; */
   text {
     fill: #8c9296;
-    font-size: 10px;
+    font-size: 12px;
     user-select: none;
+  }
+  > text {
+    font-size: 14px;
   }
 `;
 
@@ -41,19 +44,31 @@ const XAxis = styled.svg`
   grid: repeat(10, 1fr) / 1fr; */
   text {
     fill: #8c9296;
-    font-size: 10px;
+    font-size: 12px;
     user-select: none;
+  }
+  > text {
+    font-size: 14px;
   }
 `;
 
-const Axes = ({ yTicks, xTicks, yScale }) => {
+const Axes = ({ yTicks, xTicks, yLabel, xLabel }) => {
   return (
     <AxesWrap>
       <YAxis>
+        <text
+          x={-250}
+          y={5}
+          transform="rotate(-90)"
+          textAnchor="middle"
+          dy="1em"
+        >
+          {yLabel}
+        </text>
         {yTicks.map(({ label, y }, i) => (
           <g key={i}>
-            <line x1={0} x2={20} y1={y} y2={y} />
-            <text x={0} y={y + 11}>
+            <line x1={30} x2="95%" y1={y} y2={y} />
+            <text x={30} y={y + 11}>
               {label}
             </text>
           </g>
@@ -61,9 +76,13 @@ const Axes = ({ yTicks, xTicks, yScale }) => {
         }
       </YAxis>
       <XAxis>
+        <text x="50%" y={470} textAnchor="middle" dy="1em">
+          {xLabel}
+        </text>
         {xTicks.map(({ label, x }, i) => (
           <g key={i}>
-            <text x={x} textAnchor="middle" y={500 - 20 + 15}>
+            <line x1={x} x2={x} y1={440} y2={450} />
+            <text x={x} textAnchor="middle" y={465}>
               {label}
             </text>
           </g>
