@@ -114,10 +114,11 @@ const ChartModel = types
       }));
     },
     weightAxis() {
-      const f = format(',');
+      const f = format(',.2r');
+      const f2 = format(',.2s');
       return [100, 1000, 10000, 100000, 1000000, 10000000, 100000000].map(
         val => ({
-          label: val < 1000 ? f(val) + 'g' : f(val / 1000) + 'kg',
+          label: val < 1001 ? val / 1000 : f2(val / 1000),
           x: self.weightScale(val)
         })
       );

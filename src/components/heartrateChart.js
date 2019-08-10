@@ -40,10 +40,19 @@ const ChartWrap = styled('div')`
     background: white;
     margin: 0 auto;
     > div {
-      min-height: 500px;
       position: relative;
     }
   }
+`;
+
+const Credit = styled.div`
+  padding: 20px;
+  text-align: left;
+  a {
+    text-decoration: underline;
+    color: hsl(205, 82%, 33%);
+  }
+  margin-bottom: 30px;
 `;
 
 const HeartrateChart = ({ data = [], chart }) => {
@@ -81,7 +90,7 @@ const HeartrateChart = ({ data = [], chart }) => {
               <Axes
                 yTicks={chart.heartAxis()}
                 xTicks={chart.weightAxis()}
-                xLabel="Weight (log scale) "
+                xLabel="Weight (KG) (log scale) "
                 yLabel="Resting heartrate (BPM) "
               ></Axes>
               <Points points={chart.weightPoints()}></Points>
@@ -98,7 +107,7 @@ const HeartrateChart = ({ data = [], chart }) => {
                 yTicks={chart.longevityYAxis()}
                 xTicks={chart.weightAxis()}
                 yLabel="Longevity (years) "
-                xLabel="Weight (log scale) "
+                xLabel="Weight (KG) (log scale) "
               ></Axes>
               <Points points={chart.longevityWeightPoints()}></Points>
             </div>
@@ -109,6 +118,33 @@ const HeartrateChart = ({ data = [], chart }) => {
         <div>
           <h2>Raw data</h2>
           {chart.animals.length && <Table></Table>}
+        </div>
+      </ChartWrap>
+      <ChartWrap>
+        <div>
+          <Credit>
+            Icons made by{' '}
+            <a href="https://www.flaticon.com/authors/freepik" title="Freepik">
+              Freepik
+            </a>{' '}
+            from{' '}
+            <a href="https://www.flaticon.com/" title="Flaticon">
+              www.flaticon.com
+            </a>{' '}
+            and{' '}
+            <a href="https://icons8.com/" title="Icons 8">
+              Icons 8
+            </a>
+            {'. '}
+            Licensed by{' '}
+            <a
+              href="http://creativecommons.org/licenses/by/3.0/"
+              title="Creative Commons BY 3.0"
+              target="_blank"
+            >
+              CC 3.0 BY
+            </a>
+          </Credit>
         </div>
       </ChartWrap>
     </>

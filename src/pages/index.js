@@ -13,7 +13,9 @@ const Header = styled('header')`
     hsl(205, 74%, 65%)
   );
   text-align: center;
-  padding: 30px 0 80px;
+  padding: 30px 10px 80px;
+  ${media.phablet` padding: 30px 10px 30px;`}
+  ${media.phone`padding: 30px 10px 30px;`}
   color: #fff;
   overflow: visible;
   position: relative;
@@ -21,6 +23,7 @@ const Header = styled('header')`
     font-weight: normal;
   }
   margin-bottom: 100px;
+  ${media.phone`margin-bottom: 30px;border-bottom:5px solid hsl(209, 34%, 30%)`}
 `;
 
 const Info = styled('div')`
@@ -32,6 +35,8 @@ const Info = styled('div')`
   width: 100%;
   left: 0;
   bottom: -50px;
+  ${media.phablet`bottom: 0px;`}
+  ${media.phone`bottom: 0px;`}
   > div {
     width: 80%;
     min-width: 300px;
@@ -92,25 +97,6 @@ const IndexPage = () => {
         </Info>
       </Header>
       <HeartrateChart data={animalData}></HeartrateChart>
-      {/* <div>
-        Icons made by{' '}
-        <a href="https://www.flaticon.com/authors/freepik" title="Freepik">
-          Freepik
-        </a>{' '}
-        from{' '}
-        <a href="https://www.flaticon.com/" title="Flaticon">
-          www.flaticon.com
-        </a>{' '}
-        is licensed by{' '}
-        <a
-          href="http://creativecommons.org/licenses/by/3.0/"
-          title="Creative Commons BY 3.0"
-          target="_blank"
-        >
-          CC 3.0 BY
-        </a>
-      </div>
-       */}
     </Layout>
   );
 };
