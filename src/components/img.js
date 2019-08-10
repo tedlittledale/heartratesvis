@@ -1,4 +1,4 @@
-import React from 'React';
+import React from 'react';
 import Img from 'gatsby-image';
 import { StaticQuery, graphql } from 'gatsby';
 
