@@ -13,9 +13,9 @@ import { format } from 'd3-format';
 
 const AnimalModel = types.model('AnimalModel', {
   Creature: '',
-  Longevity__Years_: '',
-  Mass__grams_: '',
-  Resting_Heart_Rate__BPM_: ''
+  Longevity__Years_: 0,
+  Mass__grams_: 0,
+  Resting_Heart_Rate__BPM_: 0
 });
 
 const ChartModel = types

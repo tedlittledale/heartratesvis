@@ -146,16 +146,11 @@ const Points = ({ points = [] }) => {
   return (
     <>
       {points.map(({ x, y, label, pulse }, i) => (
-        <Blinker top={y - 4} duration={pulse} left={x - 4}></Blinker>
+        <Blinker key={i} top={y - 4} duration={pulse} left={x - 4}></Blinker>
       ))}
       <PointsWrap>
-        <defs>
-          <filter id="shadow">
-            <feDropShadow dx="0.2" dy="0.4" stdDeviation="0.2" />
-          </filter>
-        </defs>
         {points.map(({ x, y, label, pulse }, i) => (
-          <g>
+          <g key={i}>
             {/* <circle fill={'red'} cx={x} cy={y} r="10" key={i} />
           <text x={x} y={y + 11}>
             {label}
