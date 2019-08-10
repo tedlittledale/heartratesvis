@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 import Layout from '../components/layout';
 import HeartrateChart from '../components/heartrateChart';
+import { media } from '../utils/media';
 
 const Header = styled('header')`
   background-image: linear-gradient(
@@ -26,6 +27,8 @@ const Info = styled('div')`
   min-height: 100px;
 
   position: absolute;
+  ${media.phablet`position: relative`}
+  ${media.phone`position: relative`}
   width: 100%;
   left: 0;
   bottom: -50px;
@@ -44,6 +47,10 @@ const Info = styled('div')`
     box-sizing: border-box;
     line-height: 1.7;
     font-size: 18px;
+  }
+  a {
+    text-decoration: underline;
+    color: hsl(205, 82%, 33%);
   }
 `;
 
@@ -64,7 +71,6 @@ const IndexPage = () => {
       }
     }
   `);
-  console.log({ animalData });
   return (
     <Layout>
       <Header>

@@ -7,8 +7,7 @@ const AxesWrap = styled('div')`
   grid: 1fr / 1fr;
   justify-items: center;
   position: relative;
-  height: 600px;
-
+  height: 520px;
   line {
     stroke: #d8d8d8;
   }

@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Img from './img';
+import { media } from '../utils/media';
 
 const KeyWrap = styled('div')`
   display: grid;
@@ -21,8 +22,9 @@ const KeyWrap = styled('div')`
   }
   > div {
     width: 80%;
-    min-width: 300px;
     max-width: 960px;
+    ${media.phablet`width: 90%;`}
+    ${media.phone`width: 90%;`}
     border-radius: 5px;
     box-shadow: 0 5px 15px hsla(0, 0%, 0%, 0.2);
     box-sizing: border-box;
@@ -35,6 +37,9 @@ const Items = styled('div')`
   grid: 1fr 1fr 1fr / repeat(5, 1fr);
   grid-gap: 15px 0;
   padding-bottom: 20px;
+  text-align: center;
+  ${media.phablet`font-size:14px;`}
+  ${media.phone`font-size:14px;`}
 `;
 
 const Item = styled('div')`

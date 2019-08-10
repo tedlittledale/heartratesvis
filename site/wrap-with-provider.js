@@ -9,6 +9,7 @@ import React from 'react';
 import { Provider } from 'mobx-react';
 import { types, onSnapshot } from 'mobx-state-tree';
 import { scaleLinear, scaleLog } from 'd3-scale';
+import { format } from 'd3-format';
 
 const AnimalModel = types.model('AnimalModel', {
   Creature: '',
@@ -29,10 +30,9 @@ const ChartModel = types
   })
   .actions(self => ({
     addAnimals(animals) {
-      console.log({ animals });
       self.animals = animals;
     },
-    setUpScales() {
+    setUpScales({ width }) {
       let maxHeartrate = 0,
         minHeartrate = 0,
         maxLongevity = 0,
@@ -40,11 +40,11 @@ const ChartModel = types
         maxWeight = 0,
         minWeight = 0;
       const paddingX = 30;
+      const paddingRight = 0;
       const marginX = 30;
       const marginY = 30;
       const marginTop = 30;
       const chartHeight = 500;
-      console.log('hasdfa', self.animals);
       self.animals.forEach(
         ({
           Creature,
@@ -76,14 +76,6 @@ const ChartModel = types
               : Math.min(minWeight, parseInt(Mass__grams_, 10));
         }
       );
-      console.log({
-        maxHeartrate,
-        minHeartrate,
-        maxLongevity,
-        minLongevity,
-        maxWeight,
-        minWeight
-      });
       self.heartScale = scaleLinear()
         .domain([maxHeartrate, minHeartrate])
         .nice(5)
@@ -91,7 +83,7 @@ const ChartModel = types
       self.longevityScale = scaleLinear()
         .domain([minLongevity, maxLongevity])
         .nice(5)
-        .range([paddingX + marginY, 960 - marginX - paddingX]);
+        .range([paddingX + marginY, width - marginX - paddingX - paddingRight]);
       self.longevityScaleY = scaleLinear()
         .domain([maxLongevity, minLongevity])
         .nice(5)
@@ -99,7 +91,7 @@ const ChartModel = types
       self.weightScale = scaleLog()
         .base(2)
         .domain([minWeight, maxWeight])
-        .range([paddingX + marginY, 960 - marginX - paddingX]);
+        .range([paddingX + marginY, width - marginX - paddingX - paddingRight]);
     }
   }))
   .views(self => ({
@@ -122,9 +114,10 @@ const ChartModel = types
       }));
     },
     weightAxis() {
-      return [10, 100, 1000, 10000, 100000, 1000000, 10000000, 100000000].map(
+      const f = format(',');
+      return [100, 1000, 10000, 100000, 1000000, 10000000, 100000000].map(
         val => ({
-          label: val / 1000,
+          label: val < 1000 ? f(val) + 'g' : f(val / 1000) + 'kg',
           x: self.weightScale(val)
         })
       );

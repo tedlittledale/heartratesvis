@@ -28,7 +28,6 @@ const Image = ({ filename, alt }) => (
       if (!image) {
         return null;
       }
-      console.log({ image });
       const imageSizes = image.node.childImageSharp.sizes;
       return <Img alt={alt} sizes={imageSizes} />;
     }}
