@@ -60,7 +60,7 @@ const HeartrateChart = ({ data = [], chart }) => {
       <ChartWrap>
         <div ref={targetRef}>
           <h2>Resting Heartrate vs Longevity of animal</h2>
-          {chart.animals.length && (
+          {chart.animals.length !== 0 && (
             <div>
               <Axes
                 yTicks={chart.heartAxis()}
@@ -76,7 +76,7 @@ const HeartrateChart = ({ data = [], chart }) => {
       <ChartWrap>
         <div>
           <h2>Resting Heartrate vs Weight of animal</h2>
-          {chart.animals.length && (
+          {chart.animals.length !== 0 && (
             <div>
               <Axes
                 yTicks={chart.heartAxis()}
@@ -92,7 +92,7 @@ const HeartrateChart = ({ data = [], chart }) => {
       <ChartWrap>
         <div>
           <h2>Longevity vs Weight of animal</h2>
-          {chart.animals.length && (
+          {chart.animals.length !== 0 && (
             <div>
               <Axes
                 yTicks={chart.longevityYAxis()}
