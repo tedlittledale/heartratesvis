@@ -69,63 +69,12 @@ const Blinker = styled.div`
   border-radius: 4px;
   animation: ${pulse2} ${withProp(['duration'], duration => `${duration}ms`)}
     linear infinite;
-    /* transform: scale(0.1) translateX(-25%) translateY(-25%);
-  transform-origin:50% 50%;
-  animation: ${pulse3} ${withProp(['duration'], duration => `${duration}ms`)}
-    linear infinite; */
-   
-  /* &:before,
-  &:after {
-    position: absolute;
-    content: '';
-    left: 2px;
-    top: -25px;
-    width: 50px;
-    height: 80px;
-    background:hsla(9, 100%, 74%, 1);
-    -moz-border-radius: 50px 50px 0 0;
-    border-radius: 50px 50px 0 0;
-    -webkit-transform: rotate(-45deg);
-    -moz-transform: rotate(-45deg);
-    -ms-transform: rotate(-45deg);
-    -o-transform: rotate(-45deg);
-    transform: rotate(-45deg);
-    -webkit-transform-origin: 0 100%;
-    -moz-transform-origin: 0 100%;
-    -ms-transform-origin: 0 100%;
-    -o-transform-origin: 0 100%;
-    transform-origin: 0 100%;
-
-    
-    linear infinite;
-  }
-  &:after {
-    left: -48px;
-    -webkit-transform: rotate(45deg);
-    -moz-transform: rotate(45deg);
-    -ms-transform: rotate(45deg);
-    -o-transform: rotate(45deg);
-    transform: rotate(45deg);
-    -webkit-transform-origin: 100% 100%;
-    -moz-transform-origin: 100% 100%;
-    -ms-transform-origin: 100% 100%;
-    -o-transform-origin: 100% 100%;
-    transform-origin: 100% 100%;
-  } */
 `;
 
-const ImageWrap = styled('g')`
-  image {
-    /* animation: ${pulse} ${withProp(
-  ['duration'],
-  duration => `${duration}ms`
-)}
-      linear infinite; */
-  }
-`;
+const ImageWrap = styled('g')``;
 
 const animalMap = {
-  Human: 'human',
+  Human: 'user-female',
   Cat: 'cat-butt',
   'Small dog': 'pug',
   'Medium dog': 'corgi',

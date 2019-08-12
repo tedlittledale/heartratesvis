@@ -53,7 +53,7 @@ const Item = styled('div')`
 `;
 
 const animalMap = {
-  Human: 'human',
+  Human: 'user-female',
   Cat: 'cat-butt',
   'Small dog': 'pug',
   'Medium dog': 'corgi',
