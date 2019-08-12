@@ -74,7 +74,7 @@ const Blinker = styled.div`
 const ImageWrap = styled('g')``;
 
 const animalMap = {
-  Human: 'user-female',
+  Human: 'human2',
   Cat: 'cat-butt',
   'Small dog': 'pug',
   'Medium dog': 'corgi',
