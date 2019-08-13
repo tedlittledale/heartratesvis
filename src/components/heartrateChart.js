@@ -66,7 +66,9 @@ const HeartrateChart = ({ data = [], chart }) => {
 
   return (
     <>
-      <Key animals={chart ? chart.animalsSorted() : []}></Key>
+      <Key
+        animals={chart.animals.length !== 0 ? chart.animalsSorted() : []}
+      ></Key>
       <ChartWrap>
         <div ref={targetRef}>
           <h2>Resting Heartrate vs Longevity of animal</h2>
