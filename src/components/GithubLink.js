@@ -27,7 +27,11 @@ const Wrap = styled.div`
 const GithubLink = () => {
   return (
     <Wrap>
-      <a href="https://github.com/tedlittledale/heartratesvis" target="_blank">
+      <a
+        href="https://github.com/tedlittledale/heartratesvis"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
         <Img filename={`GitHub-Mark-32px.png`} alt={`github logo`} />
         <span>Fork me</span>
       </a>

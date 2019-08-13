@@ -35,6 +35,7 @@ const KeyWrap = styled('div')`
 const Items = styled('div')`
   display: grid;
   grid: 1fr 1fr 1fr / repeat(5, 1fr);
+  grid-auto-flow: column;
   grid-gap: 15px 0;
   padding-bottom: 20px;
   text-align: center;
