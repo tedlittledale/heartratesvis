@@ -11,6 +11,7 @@ import { useStaticQuery, graphql } from 'gatsby';
 import { createGlobalStyle } from 'styled-components';
 
 import Header from './header';
+import { hidden } from 'ansi-colors';
 
 const GlobalStyle = createGlobalStyle`
   body {

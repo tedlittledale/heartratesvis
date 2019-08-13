@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 import Layout from '../components/layout';
 import HeartrateChart from '../components/heartrateChart';
+import GithubLink from '../components/GithubLink';
 import { media } from '../utils/media';
 
 const Header = styled('header')`
@@ -59,6 +60,12 @@ const Info = styled('div')`
   }
 `;
 
+const Wrap = styled.div`
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+`;
+
 const IndexPage = () => {
   const {
     allMongodbHeartratesHeartrates: { edges: animalData }
@@ -78,24 +85,27 @@ const IndexPage = () => {
   `);
   return (
     <Layout>
-      <Header>
-        <h1>Heart rates, masses, and longevity of select mammals</h1>
-        <Info>
-          <div>
-            <p>
-              A submission for the Reddit r/dataisbeautiful{' '}
-              <a
-                href="https://www.reddit.com/r/dataisbeautiful/comments/cmrz6j/battle_dataviz_battle_for_the_month_of_august/"
-                _target="blank"
-              >
-                DataViz Battle for the month of August 2019
-              </a>
-              : <br />
-              Visualize heart rates, masses, and longevity of select mammals
-            </p>
-          </div>
-        </Info>
-      </Header>
+      <Wrap>
+        <GithubLink></GithubLink>
+        <Header>
+          <h1>Heart rates, masses, and longevity of select mammals</h1>
+          <Info>
+            <div>
+              <p>
+                A submission for the Reddit r/dataisbeautiful{' '}
+                <a
+                  href="https://www.reddit.com/r/dataisbeautiful/comments/cmrz6j/battle_dataviz_battle_for_the_month_of_august/"
+                  _target="blank"
+                >
+                  DataViz Battle for the month of August 2019
+                </a>
+                : <br />
+                Visualize heart rates, masses, and longevity of select mammals
+              </p>
+            </div>
+          </Info>
+        </Header>
+      </Wrap>
       <HeartrateChart data={animalData}></HeartrateChart>
     </Layout>
   );
