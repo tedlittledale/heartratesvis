@@ -95,6 +95,15 @@ const ChartModel = types
     }
   }))
   .views(self => ({
+    animalsSorted() {
+      return self.animals
+        .map(({ Creature }) => Creature)
+        .sort((a, b) => {
+          const name = a.indexOf(' ') === -1 ? a : a.split(' ')[1];
+          const name2 = b.indexOf(' ') === -1 ? b : b.split(' ')[1];
+          return name.toUpperCase() < name2.toUpperCase() ? -1 : 1;
+        });
+    },
     heartAxis() {
       return self.heartScale.ticks(10).map(val => ({
         label: val,
