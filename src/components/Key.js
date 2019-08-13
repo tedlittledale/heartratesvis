@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import Img from './img';
 import { media } from '../utils/media';
 
+import Loading from './Loading';
+
 const KeyWrap = styled('div')`
   display: grid;
   justify-items: center;
@@ -76,16 +78,23 @@ const Key = ({ animals = [] }) => {
     <KeyWrap>
       <div>
         <h2>Key</h2>
-        <Items>
-          {animals.map((name, idx) => (
-            <Item key={idx}>
-              <span>{name}</span>
-              <span>
-                <Img filename={`icons8-${animalMap[name]}-50.png`} alt={name} />
-              </span>
-            </Item>
-          ))}
-        </Items>
+        {animals.length ? (
+          <Items>
+            {animals.map((name, idx) => (
+              <Item key={idx}>
+                <span>{name}</span>
+                <span>
+                  <Img
+                    filename={`icons8-${animalMap[name]}-50.png`}
+                    alt={name}
+                  />
+                </span>
+              </Item>
+            ))}
+          </Items>
+        ) : (
+          <Loading></Loading>
+        )}
       </div>
     </KeyWrap>
   );

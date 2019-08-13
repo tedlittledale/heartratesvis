@@ -8,6 +8,7 @@ import Key from './Key';
 import Axes from './Axes';
 import Points from './Points';
 import Table from './table';
+import Loading from './Loading';
 import { media } from '../utils/media';
 
 const ChartWrap = styled('div')`
@@ -65,11 +66,11 @@ const HeartrateChart = ({ data = [], chart }) => {
 
   return (
     <>
-      <Key animals={chart.animalsSorted()}></Key>
+      <Key animals={chart ? chart.animalsSorted() : []}></Key>
       <ChartWrap>
         <div ref={targetRef}>
           <h2>Resting Heartrate vs Longevity of animal</h2>
-          {chart.animals.length !== 0 && (
+          {chart.animals.length !== 0 ? (
             <div>
               <Axes
                 yTicks={chart.heartAxis()}
@@ -79,13 +80,15 @@ const HeartrateChart = ({ data = [], chart }) => {
               ></Axes>
               <Points points={chart.longevityPoints()}></Points>
             </div>
+          ) : (
+            <Loading></Loading>
           )}
         </div>
       </ChartWrap>
       <ChartWrap>
         <div>
           <h2>Resting Heartrate vs Weight of animal</h2>
-          {chart.animals.length !== 0 && (
+          {chart.animals.length !== 0 ? (
             <div>
               <Axes
                 yTicks={chart.heartAxis()}
@@ -95,13 +98,15 @@ const HeartrateChart = ({ data = [], chart }) => {
               ></Axes>
               <Points points={chart.weightPoints()}></Points>
             </div>
+          ) : (
+            <Loading></Loading>
           )}
         </div>
       </ChartWrap>
       <ChartWrap>
         <div>
           <h2>Longevity vs Weight of animal</h2>
-          {chart.animals.length !== 0 && (
+          {chart.animals.length !== 0 ? (
             <div>
               <Axes
                 yTicks={chart.longevityYAxis()}
@@ -111,6 +116,8 @@ const HeartrateChart = ({ data = [], chart }) => {
               ></Axes>
               <Points points={chart.longevityWeightPoints()}></Points>
             </div>
+          ) : (
+            <Loading></Loading>
           )}
         </div>
       </ChartWrap>
