@@ -59,13 +59,13 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `Heart rates`,
-        short_name: `Heart rates`,
+        name: `Heartrates`,
+        short_name: `Heartrates`,
         start_url: `/`,
-        background_color: `#003E6B`,
-        theme_color: `#003E6B`,
+        background_color: `#1870AF`,
+        theme_color: `#1870AF`,
         display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png` // This path is relative to the root of the site.
+        icon: `src/images/animals/icons8-cute-hamster-50.png` // This path is relative to the root of the site.
       }
     }
     // this (optional) plugin enables Progressive Web App + Offline functionality
