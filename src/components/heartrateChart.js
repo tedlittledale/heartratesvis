@@ -95,7 +95,7 @@ const HeartrateChart = ({ data = [], chart }) => {
               <Axes
                 yTicks={chart.heartAxis()}
                 xTicks={chart.weightAxis()}
-                xLabel="Weight (KG) (log scale) "
+                xLabel="Weight (KG) (log₂ scale) "
                 yLabel="Resting heartrate (BPM) "
               ></Axes>
               <Points points={chart.weightPoints()}></Points>
@@ -114,7 +114,7 @@ const HeartrateChart = ({ data = [], chart }) => {
                 yTicks={chart.longevityYAxis()}
                 xTicks={chart.weightAxis()}
                 yLabel="Longevity (years) "
-                xLabel="Weight (KG) (log scale) "
+                xLabel="Weight (KG) (log₂ scale) "
               ></Axes>
               <Points points={chart.longevityWeightPoints()}></Points>
             </div>
